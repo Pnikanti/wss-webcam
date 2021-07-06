@@ -1,6 +1,6 @@
 "use strict";
 
-require('dotenv').config();
+require("dotenv").config();
 const nodewebcam = require("node-webcam");
 const ws = require("ws");
 const wss = new ws.Server({ port: process.env.WSS_PORT });
@@ -11,8 +11,8 @@ wss.broadcast = function broadcast(data) {
     });
 };
 
-wss.on('connection', function connection() {
-    console.log('Connected users:' + wss.listenerCount.length)
+wss.on("connection", function connection(ws, req) {
+    console.log(`New connection: ${req.socket.remoteAddress}`);
 })
 
 const webcam = nodewebcam.create({
