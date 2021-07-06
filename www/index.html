@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+    <title>Websocket server client</title>
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        #img {
+            width: 100%;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <img id="img"></img>
+
+    </div>
+
+    <script>
+
+        (function () {
+
+            "use strict";
+            let serverIp = '<%-serverIp%>';
+            let wssPort = '<%-wssPort%>';
+            let container = document.getElementById("container");
+            let img = document.getElementById("img");
+            let ws = new WebSocket(`ws://${serverIp}:${wssPort}`);
+            ws.onmessage = function (data) {
+                img.src = data.data;
+            };
+        })();
+
+    </script>
+
+</body>
+
+</html>
