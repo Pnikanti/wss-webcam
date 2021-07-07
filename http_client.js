@@ -9,7 +9,7 @@ const ip = require("ip")
 
 const serverIp = ip.address(process.env.NETWORK_INTERFACE)
 
-const server = http.createServer(function (req, res) {
+http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/html" });
     fs.readFile(__dirname + "/www/index.html", "utf-8", function (err, content) {
         if (err) {
@@ -19,6 +19,4 @@ const server = http.createServer(function (req, res) {
         let renderedHtml = ejs.render(content, { serverIp: serverIp, wssPort: process.env.WSS_PORT });
         res.end(renderedHtml);
     });
-}).listen(process.env.HTTP_PORT);
-
-if (server) console.log(`Visit ${serverIp}:${process.env.HTTP_PORT}`);
+}).listen(process.env.CLIENT_PORT, () => console.log(`Visit ${serverIp}:${process.env.CLIENT_PORT}`));
