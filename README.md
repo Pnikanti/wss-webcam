@@ -6,13 +6,19 @@
     3. npm run wss -> start websocket server and its API
     5. npm run http -> start http client
    
+### endpoints
 
-server:port/start -> start websocket camera stream
-server:port/stop -> stop websocket camera stream
+    /start -> start websocket camera stream
+    /stop -> stop websocket camera stream
 
-### Example env variables
+### example env variables
 
     HTTP_PORT=9090
     WSS_PORT=9091
     CLIENT_PORT=9092
     NETWORK_INTERFACE="Ethernet 3"
+
+- HTTP_PORT is wss.js's API port
+- WSS_PORT is wss.js's websocket server's port
+- CLIENT_PORT is http_client.js's HTTP port
+- NETWORK_INTERFACE is the network interface's name (E.g. "Ethernet 3" for Win or "eth0" for Linux) where the system is meant to be used in. Used for API returns/logging guidance for users.
