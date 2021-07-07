@@ -11,7 +11,7 @@ const serverIp = ip.address(process.env.NETWORK_INTERFACE)
 
 http.createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/html" });
-    fs.readFile(__dirname + "/www/index.html", "utf-8", function (err, content) {
+    fs.readFile(__dirname + "/www/index.html", "utf-8", (err, content) => {
         if (err) {
             res.end("Error occurred!");
             return;
